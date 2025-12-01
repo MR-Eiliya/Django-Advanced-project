@@ -1,10 +1,10 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 from django.views.generic.base import TemplateView, RedirectView
 from .models import Post
 from django.views.generic import ListView, DetailView, FormView, CreateView, UpdateView, DeleteView
 from .forms import PostForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-
 
 
 
@@ -94,3 +94,6 @@ class PostEditView(UpdateView):
 class PostDeleteView(DeleteView):
     model = Post
     success_url = '/blog/post'
+
+
+     
