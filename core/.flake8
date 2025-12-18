@@ -10,5 +10,4 @@ exclude =
     settings.py,
     __init__,
 
-ignore = 
-    E501
+ignore = E501, F401, F403

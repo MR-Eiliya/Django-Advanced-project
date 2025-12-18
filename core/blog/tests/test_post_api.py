@@ -2,7 +2,7 @@ from rest_framework.test import APIClient
 from django.urls import reverse
 import pytest
 from datetime import datetime
-from accounts.models import User, Profile
+from accounts.models import User
 
 
 @pytest.fixture

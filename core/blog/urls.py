@@ -1,15 +1,11 @@
 from django.urls import path, include
 from . import views
 
-# from django.views.generic import TemplateView
-from django.views.generic.base import RedirectView
-
 
 app_name = "blog"
 
 urlpatterns = [
     path("", views.IndexView.as_view(), name="index"),
-    # path('go-to-mosbatenergy', views.RedirectToMosbat.as_view(), name='redirect-to-mosbatenergy'),
     path("post", views.PostListView.as_view(), name="post-list"),
     path("post/<int:pk>/", views.PostDetailView.as_view(), name="post-detail"),
     path("post/create/", views.PostCreateView.as_view(), name="post-create"),
