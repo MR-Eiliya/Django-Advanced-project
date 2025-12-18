@@ -10,6 +10,4 @@ def get_schema_operation_parameters(self, view):
 
 
 DjangoFilterBackend.get_schema_fields = get_schema_fields
-DjangoFilterBackend.get_schema_operation_parameters = (
-    get_schema_operation_parameters
-)
+DjangoFilterBackend.get_schema_operation_parameters = get_schema_operation_parameters
