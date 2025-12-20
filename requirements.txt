@@ -13,6 +13,7 @@ coreapi==2.3.3
 coreschema==0.0.4
 drf-yasg[validation]
 djangorestframework-simplejwt
+django-cors-headers
 
 
 # deployment modules
@@ -25,3 +26,4 @@ black
 flake8
 pytest
 pytest-django
+Faker
