@@ -1,25 +1,45 @@
 version: "3.12"
 
 services:
+  redis:
+    container_name: redis
+    image: redis:7
+    restart: always
+    ports:
+      - "6379:6379"
+    command: redis-server --save 60 1 --loglevel warning
+
   backend:
     build: .
     container_name: backend
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./core:/app
+    working_dir: /app
     ports:
       - "8000:8000"
     environment:
-      - SECRET_KEY=test
-      - DEBUG=True
-      - EMAIL_HOST=smtp
-      - EMAIL_PORT=25
-      - EMAIL_USE_TLS=False
+      SECRET_KEY: test
+      DEBUG: "True"
+      EMAIL_HOST: smtp
+      EMAIL_PORT: 25
+      EMAIL_USE_TLS: "False"
     depends_on:
-      - smtp
+      - redis
+
+  worker:
+    build: .
+    container_name: worker
+    command: celery -A core worker --loglevel=info
+    working_dir: /app
+    volumes:
+      - ./core:/app
+    depends_on:
+      - redis
+      - backend
 
   smtp:
-    image: rnwood/smtp4dev
+    image: rnwood/smtp4dev:latest
     container_name: smtp4dev
     ports:
       - "5025:25"   # SMTP

@@ -1,5 +1,5 @@
 from rest_framework.permissions import (
-    IsAuthenticatedOrReadOnly
+    IsAuthenticated
 )
 from .serializers import PostSerializers, CategorySerializer
 from ...models import Post, Category
@@ -23,6 +23,6 @@ class PostModelViewSet(viewsets.ModelViewSet):
 
 
 class CategoryModelViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticated]
     serializer_class = CategorySerializer
     queryset = Category.objects.all()
